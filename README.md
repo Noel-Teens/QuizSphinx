@@ -1,4 +1,4 @@
-# Quiz Master
+# Quiz Sphinx
 
 A modern, interactive quiz-based learning game developed in **Unity 6** using the **Universal Render Pipeline (URP)** for 2D gameplay. This project serves as an educational tool to demonstrate game development practices including UI design, sprite management, and interactive game mechanics.
 
@@ -28,7 +28,7 @@ A modern, interactive quiz-based learning game developed in **Unity 6** using th
 
 ## 🎮 Overview
 
-**Quiz Master** is a learning game development project that creates an engaging quiz experience with a polished, modern user interface. The project emphasizes clean game design patterns, effective use of Unity's rendering capabilities, and interactive gameplay mechanics. It serves as both a playable game and a reference implementation for game development best practices.
+**Quiz Sphinx** is a learning game development project that creates an engaging quiz experience with a polished, modern user interface. The project emphasizes clean game design patterns, effective use of Unity's rendering capabilities, and interactive gameplay mechanics. It serves as both a playable game and a reference implementation for game development best practices.
 
 ### Target Audience
 
@@ -90,15 +90,15 @@ A modern, interactive quiz-based learning game developed in **Unity 6** using th
 ## 📁 Project Structure
 
 ```
-Quiz Master/
+Quiz Sphinx/
 ├── Assets/
 │   ├── Scenes/
 │   │   ├── SampleScene.unity          # Main game scene
 │   │   └── SampleScene.unity.meta
 │   ├── Sprites/
-│   │   ├── Quiz Master - Gameplay Overview 1.png  # UI mockup 1
-│   │   ├── Quiz Master - Gameplay Overview 2.png  # UI mockup 2
-│   │   ├── Quiz Master - Gameplay Overview 3.png  # UI mockup 3
+│   │   ├── Quiz Sphinx - Gameplay Overview 1.png  # UI mockup 1
+│   │   ├── Quiz Sphinx - Gameplay Overview 2.png  # UI mockup 2
+│   │   ├── Quiz Sphinx - Gameplay Overview 3.png  # UI mockup 3
 │   │   ├── background.png             # Background image
 │   │   ├── neon_round_orange.png      # Neon UI element
 │   │   ├── neon_square_blue.png       # Neon UI element
@@ -139,8 +139,8 @@ Quiz Master/
 
 1. **Clone or Download the Project**
    ```bash
-   git clone https://github.com/yourusername/Quiz-Master.git
-   cd "Quiz Master"
+   git clone https://github.com/Noel-Teens/QuizSphinx
+   cd "QuizSphinx"
    ```
 
 2. **Open in Unity Hub**
@@ -187,7 +187,7 @@ The primary game scene containing:
 ### Assets
 
 #### Sprites
-- **Quiz Master Gameplay Overview**: 3 reference images showing different UI states/mockups
+- **Quiz Sphinx Gameplay Overview**: 3 reference images showing different UI states/mockups
 - **Background**: Large atmospheric background image (1080p+)
 - **Neon Elements**: Decorative UI components (orange and blue variations)
 
@@ -339,29 +339,3 @@ This project is provided for educational purposes. Please refer to the LICENSE f
 
 **Issue**: "Game runs slowly"
 - **Solution**: Use the Profiler to identify bottlenecks; check draw call count and memory usage
-
----
-
-## 👥 Credits
-
-- **Project Name**: Quiz Master
-- **Organization ID**: teeniejoshua
-- **Cloud Project ID**: 0d109785-6cd5-4088-be44-f2e17ab29e9c
-
----
-
-## 📞 Support
-
-For issues, questions, or suggestions:
-- Check the Troubleshooting section above
-- Review the Additional Resources
-- Consult the Unity Community Forums
-- Submit an issue via GitHub
-
----
-
-**Last Updated**: January 2026  
-**Unity Version**: 6000.1.8f1 (LTS)  
-**Platform**: Windows, macOS, Linux (Web, Mobile supported)
-
-Enjoy developing with **Quiz Master**! 🚀
