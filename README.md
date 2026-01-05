@@ -22,7 +22,6 @@ A modern, interactive quiz-based learning game developed in **Unity 6** using th
 - [UI/UX Design](#uiux-design)
 - [Development Guidelines](#development-guidelines)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -306,12 +305,6 @@ Contributions are welcome! To contribute:
 - Performance optimizations
 - Documentation improvements
 - Bug fixes and testing
-
----
-
-## 📝 License
-
-This project is provided for educational purposes. Please refer to the LICENSE file for specific terms and conditions.
 
 ---
 
