@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 80d7d5be39643d843b77efe764ef2a42
+guid: 93643298c14730b45968ac959d17b13f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 211742694878827040
-    second: Quiz Master - Gameplay Overview 3_0
+      213: -145732694503091978
+    second: Quiz Sphinx - Gameplay Overview 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Quiz Master - Gameplay Overview 3_0
+      name: Quiz Sphinx - Gameplay Overview 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0225900fbd240f200800000000000000
-      internalID: 211742694878827040
+      spriteID: 6f09bffe2e04afdf0800000000000000
+      internalID: -145732694503091978
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Quiz Master - Gameplay Overview 3_0: 211742694878827040
+      Quiz Sphinx - Gameplay Overview 1_0: -145732694503091978
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
