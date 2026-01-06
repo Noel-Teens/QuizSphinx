@@ -190,7 +190,6 @@ This makes the repository both:
 
 ## 🧪 Debugging & Common Issues
 
-- **Timer spam in console** → Disable debug logs in Timer
 - **No questions showing** → Ensure Question assets are assigned
 - **Buttons not responding** → Verify OnClick bindings
 
@@ -204,12 +203,6 @@ This project demonstrates:
 - Time-driven gameplay mechanics
 - UI state management
 - Scalable design for small games
-
-Ideal for:
-- Unity learners
-- Architecture practice
-- Portfolio projects
-- Technical interviews
 
 ---
 
