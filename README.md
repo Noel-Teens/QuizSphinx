@@ -1,4 +1,4 @@
-# Quiz Sphinx
+# QuizSphinx
 
 A modern, interactive quiz-based learning game developed in **Unity 6** using the **Universal Render Pipeline (URP)** for 2D gameplay. This project serves as an educational tool to demonstrate game development practices including UI design, sprite management, and interactive game mechanics.
 
@@ -27,7 +27,7 @@ A modern, interactive quiz-based learning game developed in **Unity 6** using th
 
 ## 🎮 Overview
 
-**Quiz Sphinx** is a learning game development project that creates an engaging quiz experience with a polished, modern user interface. The project emphasizes clean game design patterns, effective use of Unity's rendering capabilities, and interactive gameplay mechanics. It serves as both a playable game and a reference implementation for game development best practices.
+**QuizSphinx** is a learning game development project that creates an engaging quiz experience with a polished, modern user interface. Built with **ScriptableObject-based architecture**, the game features a timed quiz system where players answer multiple-choice questions with real-time feedback. The project emphasizes clean game design patterns, effective use of Unity's rendering capabilities, and interactive gameplay mechanics. It serves as both a playable game and a reference implementation for game development best practices.
 
 ### Target Audience
 
@@ -40,10 +40,12 @@ A modern, interactive quiz-based learning game developed in **Unity 6** using th
 ## ✨ Features
 
 ### Core Gameplay
-- **Interactive Quiz Mechanics**: Engaging multiple-choice quiz system with visual feedback
-- **Score Tracking**: Real-time score updates and performance metrics
+- **Timed Quiz System**: Each question has a 30-second timer with visual progress indicator
+- **Multiple-Choice Questions**: 4-option answers with instant feedback (correct/incorrect)
+- **ScriptableObject Questions**: Easy question management and expansion via SO-based architecture
 - **Responsive UI**: Intuitive user interface designed for accessibility
-- **Visual Feedback**: Neon-themed UI elements with smooth animations and transitions
+- **Visual Feedback**: Neon-themed UI elements with sprite-based feedback (correct/incorrect highlighting)
+- **Answer Flow**: Show correct answer for 10 seconds before moving to next question
 
 ### Visual Design
 - **Neon Aesthetic**: Modern, eye-catching neon-style graphics
@@ -89,8 +91,20 @@ A modern, interactive quiz-based learning game developed in **Unity 6** using th
 ## 📁 Project Structure
 
 ```
-Quiz Sphinx/
+QuizSphinx/
 ├── Assets/
+│   ├── Scripts/
+│   │   ├── Quiz.cs                    # Main quiz controller
+│   │   ├── QuestionSO.cs              # Question ScriptableObject
+│   │   └── Timer.cs                   # Game timer system
+│   ├── Questions/
+│   │   ├── Question 1.asset           # Sample quiz question SO
+│   │   ├── Question 2.asset
+│   │   ├── Question 3.asset
+│   │   ├── Question 4.asset
+│   │   └── Question 5.asset
+│   ├── Prefabs/
+│   │   └── AnswerButton.prefab        # Reusable answer button UI
 │   ├── Scenes/
 │   │   ├── SampleScene.unity          # Main game scene
 │   │   └── SampleScene.unity.meta
@@ -178,17 +192,36 @@ Quiz Sphinx/
 
 #### SampleScene.unity
 The primary game scene containing:
-- **Quiz UI Canvas**: Main gameplay interface with quiz questions and answer options
+- **Quiz Manager**: References to Quiz.cs controller and QuestionSO data
+- **Quiz UI Canvas**: Main gameplay interface with question text and 4 answer buttons
+- **Timer UI**: Visual progress bar showing remaining time per question
+- **Answer Buttons**: AnswerButton prefab instances (4 total) with OnClick listeners
 - **Background**: Neon-themed visual backdrop
-- **UI Elements**: Buttons, text displays, and visual feedback systems
-- **Input Handlers**: Manages player interactions
+- **UI Elements**: TextMesh Pro text displays, sprite images for feedback
+- **Timer Component**: Manages 30-second question timer and 10-second answer reveal timer
 
 ### Assets
+
+#### Scripts
+- **Quiz.cs**: Main quiz controller that manages question display, answer evaluation, and visual feedback
+- **QuestionSO.cs**: ScriptableObject class for storing quiz questions with multiple-choice answers
+- **Timer.cs**: Handles game timing with dual-phase system (question time + answer reveal time)
+
+#### Questions (ScriptableObject Assets)
+- **Question 1-5.asset**: Pre-configured quiz question assets with questions and 4-option answers
+- Easily expandable by creating new QuestionSO assets in the editor
+
+#### Prefabs
+- **AnswerButton.prefab**: Reusable UI button prefab for answer options
+  - Includes Image component for sprite feedback
+  - Includes TextMeshProUGUI for answer text
+  - Configured with Button component and OnClick event
 
 #### Sprites
 - **Quiz Sphinx Gameplay Overview**: 3 reference images showing different UI states/mockups
 - **Background**: Large atmospheric background image (1080p+)
 - **Neon Elements**: Decorative UI components (orange and blue variations)
+  - Used for correct/incorrect answer indicators
 
 #### TextMesh Pro
 - **Fonts**: LiberationSans font with SDF rendering
@@ -219,19 +252,30 @@ All dependencies are managed via Unity Package Manager. Key packages include:
 
 ### Typical Gameplay Flow
 
-1. **Game Start**: Player enters the main quiz scene
-2. **Question Display**: A quiz question appears with visual styling
-3. **Answer Selection**: Player clicks on one of the multiple-choice options
-4. **Feedback**: Visual and/or audio feedback indicates correct/incorrect answer
-5. **Score Update**: Score is updated in real-time
-6. **Next Question**: Game transitions to the next question
-7. **Quiz End**: Final score is displayed with performance summary
+1. **Game Start**: Scene loads with Timer and Quiz components initialized
+2. **Question Loading**: Quiz.cs loads first question from QuestionSO asset
+3. **Question Display**: Question text and 4 answer options are displayed on canvas
+4. **Timer Countdown**: 30-second timer begins, visual progress indicator updates via Image.fillAmount
+5. **Answer Selection**: Player clicks one of the 4 answer buttons
+6. **Immediate Feedback**: 
+   - If correct: "Correct!" message displays, correct button highlighted with sprite change
+   - If incorrect: "Sorry, the correct answer was..." message with correct answer highlighted
+7. **Answer Reveal Phase**: 10-second timer displays correct answer before proceeding
+8. **Next Question**: Timer resets, new question loads, buttons re-enabled and reset to default sprite
+9. **Quiz Loop**: Cycle repeats with next QuestionSO asset
+
+### Timer System Details
+
+- **Question Timer**: 30 seconds for player to answer
+- **Answer Reveal Timer**: 10 seconds to show correct answer
+- **Visual Indicator**: Image component fillAmount updates based on fillFraction
+- **Auto-Advance**: If no answer selected within time, correct answer auto-displays
 
 ### Visual States (Based on Gameplay Overviews)
 
-- **Overview 1**: Initial question presentation layout
-- **Overview 2**: Alternative UI arrangement or mid-game state
-- **Overview 3**: Results or summary screen
+- **Overview 1**: Initial question presentation layout with timer bar
+- **Overview 2**: Alternative UI arrangement or mid-game state with active timer
+- **Overview 3**: Answer feedback state or results screen
 
 ---
 
@@ -270,12 +314,23 @@ All dependencies are managed via Unity Package Manager. Key packages include:
 - Keep scenes in `Assets/Scenes/` with version control
 - Use nested prefabs for complex UI hierarchies
 
+### Question Asset Creation
+
+1. Right-click in Project window → Create → Quiz Question
+2. Name the asset (e.g., "Question 6")
+3. Set the question text in the TextArea field
+4. Fill in 4 answer options
+5. Set the correct answer index (0-3)
+6. Reference in Quiz.cs or create a question manager for multiple questions
+
 ### Performance Optimization
 
 - Profile with the Unity Profiler (Window → Analysis → Profiler)
 - Minimize draw calls by batching sprites
 - Use object pooling for frequently instantiated objects
 - Optimize texture sizes and compression settings
+- Preload QuestionSO assets to avoid load time during gameplay
+- Use FixedUpdate for timer to ensure consistent timing
 
 ### Best Practices
 
@@ -299,8 +354,13 @@ Contributions are welcome! To contribute:
 
 ### Areas for Contribution
 
-- Additional quiz questions and categories
+- Additional quiz questions (create new QuestionSO assets)
+- Question categories and difficulty levels
+- Score tracking and leaderboard system
+- Sound effects and audio feedback
 - Enhanced visual effects and animations
+- Question shuffling and randomization
+- Multi-round quiz mode
 - Improved accessibility features
 - Performance optimizations
 - Documentation improvements
